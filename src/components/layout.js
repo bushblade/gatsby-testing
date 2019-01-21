@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import { Spring } from 'react-spring'
+import PropTypes from 'prop-types'
 
 import Header from './header'
 import Archive from './archive'
@@ -19,44 +20,53 @@ const MainLayout = styled.main`
   grid-gap: 40px;
 `
 
-const Layout = ({ children, location }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
+const Layout = ({ children, location }) => {
+  return (
+    <StaticQuery
+      query={graphql`
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
+            }
           }
-        }
-        file(relativePath: { regex: "/bg/" }) {
-          childImageSharp {
-            fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid_tracedSVG
+          file(relativePath: { regex: "/bg/" }) {
+            childImageSharp {
+              fluid(maxWidth: 1000) {
+                ...GatsbyImageSharpFluid_tracedSVG
+              }
             }
           }
         }
-      }
-    `}
-    render={data => (
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <Spring
-          from={{ height: location.pathname === '/' ? 100 : 200 }}
-          to={{ height: location.pathname === '/' ? 200 : 100 }}
-        >
-          {styles => (
-            <div style={{ overflow: 'hidden', ...styles }}>
-              <Img fluid={data.file.childImageSharp.fluid} />
-            </div>
-          )}
-        </Spring>
-        <MainLayout>
-          <div>{children}</div>
-          <Archive />
-        </MainLayout>
-      </>
-    )}
-  />
-)
+      `}
+      render={data => (
+        <>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <Spring
+            from={{ height: location.pathname === '/' ? 100 : 200 }}
+            to={{ height: location.pathname === '/' ? 200 : 100 }}
+          >
+            {styles => (
+              <div style={{ overflow: 'hidden', ...styles }}>
+                <Img fluid={data.file.childImageSharp.fluid} />
+              </div>
+            )}
+          </Spring>
+          <MainLayout>
+            <div>{children}</div>
+            <Archive />
+          </MainLayout>
+        </>
+      )}
+    />
+  )
+}
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+Layout.defaultProps = {
+  location: {},
+}
 
 export default Layout
