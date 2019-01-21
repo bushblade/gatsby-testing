@@ -24,13 +24,6 @@ const ArchiveList = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  a {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-size: 1rem;
-    text-decoration: underline;
-    color: #524763;
-  }
 `
 
 const Archive = () => (

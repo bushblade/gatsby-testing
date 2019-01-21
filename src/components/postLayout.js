@@ -9,9 +9,9 @@ import Layout from './layout'
 // Page Query
 // Must be used on pages
 
-const postLayout = ({ data: { markdownRemark } }) => {
+const postLayout = ({ data: { markdownRemark }, location }) => {
   return (
-    <Layout>
+    <Layout location={location}>
       <h1>{markdownRemark.frontmatter.title}</h1>
       <h3>{markdownRemark.frontmatter.date}</h3>
       <div

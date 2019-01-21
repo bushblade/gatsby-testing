@@ -1,9 +1,25 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
+import Toggle from '../components/toggle'
 
-const About = () => (
-  <Layout>
+const Button = styled.button`
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: ${props => (props.primary ? '#524763' : '#1ca086')};
+  color: white;
+  outline: none;
+  border: none;
+  padding: 0.2rem 1rem;
+  transition: all 0.2s ease-in-out;
+  :hover {
+    box-shadow: -1px 3px 10px 5px rgba(0, 0, 0, 0.2);
+  }
+`
+
+const About = ({ location }) => (
+  <Layout location={location}>
     <div>
       <h1>About Us</h1>
       <p>
@@ -21,6 +37,16 @@ const About = () => (
         exercitationem reprehenderit nisi maxime doloremque ut.
       </p>
     </div>
+    <Toggle>
+      {({ open, toggle }) => (
+        <>
+          {open && <h1>Hide or Show</h1>}
+          <Button primary onClick={toggle}>
+            Toggle
+          </Button>
+        </>
+      )}
+    </Toggle>
   </Layout>
 )
 

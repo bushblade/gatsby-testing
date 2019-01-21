@@ -27,23 +27,6 @@ const Post = styled.article`
   padding: 1rem;
   border-radius: 4px;
   margin-bottom: 1rem;
-  a {
-    color: black;
-    text-decoration: none;
-  }
-  h2 {
-    margin-bottom: 0;
-  }
-  p {
-    font-size: 1rem;
-  }
-  .readmore {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-size: 0.8rem;
-    text-decoration: underline;
-    color: #524763;
-  }
 `
 
 const listing = () => {
@@ -53,10 +36,10 @@ const listing = () => {
       render={({ allMarkdownRemark }) =>
         allMarkdownRemark.edges.map(({ node }) => (
           <Post key={node.frontmatter.slug}>
-            <Link className="readmore" to={`/posts${node.frontmatter.slug}`}>
+            <Link to={`/posts${node.frontmatter.slug}`}>
               <h2>{node.frontmatter.title}</h2>
             </Link>
-            <p>{node.frontmatter.date}</p>
+            <em>{node.frontmatter.date}</em>
             <p>{node.excerpt} </p>
           </Post>
         ))
