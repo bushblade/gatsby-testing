@@ -1,5 +1,8 @@
 ---
 title: Will
-bio: Still learning
+bio: |-
+  Still learning
+
+  **Something in Bold**
 ---
 
