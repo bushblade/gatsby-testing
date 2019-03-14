@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   branch: master
   repo: bushblade/gatsby-testing
 
@@ -7,11 +7,11 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'team'
-    label: 'Team'
-    folder: 'src/team'
+  - name: "team"
+    label: "Team"
+    folder: "src/team"
     create: true
-    slug: '{{slug}}'
+    slug: "{{slug}}"
     fields:
-      - { label: 'Team Member', name: 'title', widget: 'string' }
-      - { label: 'Bio', name: 'bio', widget: 'markdown' }
+      - { label: "Team Member", name: "title", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "markdown" }
